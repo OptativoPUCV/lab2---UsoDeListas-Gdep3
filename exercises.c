@@ -113,22 +113,21 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 
 int parentesisBalanceados(char *cadena) {
   Stack* P = create_stack();
-      int i = 0;
-      while (cadena[i] != '\0') {
-          if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
-              push(P, (void*)&cadena[i]);
-          } else if ((cadena[i] == ')' && top(P) != NULL && *(char*)top(P) == '(') ||
-                     (cadena[i] == ']' && top(P) != NULL && *(char*)top(P) == '[') ||
-                     (cadena[i] == '}' && top(P) != NULL && *(char*)top(P) == '{')) {
-              pop(P);
-          } else if ((cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') && top(P) == NULL) {
-              return 0;
-          }
-          i++;
-      }
-      if (top(P) == NULL) {
-          return 1;
-      } else {
-          return 0;
-      }
+  int i = 0;
+  while (cadena[i] != '\0') {
+    if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
+      push(P, (void*)&cadena[i]);
+    } 
+    else if ((cadena[i] == ')' && top(P) != NULL && *(char*)top(P) == '(') ||
+            (cadena[i] == ']' && top(P) != NULL && *(char*)top(P) == '[') ||
+            (cadena[i] == '}' && top(P) != NULL && *(char*)top(P) == '{')) {
+      pop(P);
+    } 
+    else if ((cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') && top(P) == NULL) {
+      return 0;
+    }
+  i++;
+  }
+  if (top(P) == NULL) return 1;
+  else return 0;
   }
